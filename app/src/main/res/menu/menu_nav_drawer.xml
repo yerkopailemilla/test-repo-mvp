@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:id="@+id/nav_drawer_group_1"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@mipmap/ic_home"
+            android:title="Volver al inicio" />
+        <item
+            android:id="@+id/nav_sync"
+            android:icon="@mipmap/ic_sync"
+            android:title="Sincronizar datos" />
+        <!--<item
+            android:id="@+id/nav_latest"
+            android:icon="@drawable/ic_schedule"
+            android:title="Latest" />
+        <item
+            android:id="@+id/nav_highlight"
+            android:icon="@drawable/ic_highlight"
+            android:title="Highlight" />-->
+    </group>
+
+    <group
+        android:id="@+id/nav_drawer_group_2"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/nav_account"
+            android:icon="@mipmap/ic_account_circle"
+            android:title="Mis datos" />
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@mipmap/ic_logout"
+            android:title="Salir de la aplicación" />
+    </group>
+
+</menu>

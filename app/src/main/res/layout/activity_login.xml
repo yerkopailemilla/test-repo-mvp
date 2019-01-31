@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/login_root_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ProgressBar
+        android:id="@+id/login_progressbar"
+        style="@style/Widget.AppCompat.ProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        android:progressDrawable="@drawable/circular_progress_bar"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:background="@color/colorPrimaryDark" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_mlarge">
+
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/spacing_mlarge"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:src="@drawable/logo_vendormobile" />
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_middle"
+            android:visibility="visible"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/spacing_mlarge">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="@dimen/spacing_xlarge"
+                    android:layout_marginTop="@dimen/spacing_middle"
+                    android:gravity="center_horizontal"
+                    android:text="@string/login_title_text"
+                    android:textColor="@color/colorSecondaryText" />
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/login_et_companyname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-4dp"
+                    android:layout_marginRight="-4dp"
+                    android:inputType="text"
+                    android:maxLength="50"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                    android:textColor="@color/colorAccent"
+                    android:hint="@string/login_company_hint"
+                    android:theme="@style/EditText.Grey" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/spacing_mlarge" />
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/login_et_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-4dp"
+                    android:layout_marginRight="-4dp"
+                    android:inputType="text"
+                    android:maxLength="50"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                    android:textColor="@color/colorAccent"
+                    android:hint="@string/login_username_hint"
+                    android:theme="@style/EditText.Grey" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/spacing_mlarge" />
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/login_et_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-4dp"
+                    android:layout_marginRight="-4dp"
+                    android:inputType="textPassword"
+                    android:maxLength="50"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                    android:textColor="@color/colorAccent"
+                    android:hint="@string/login_password_hint"
+                    android:theme="@style/EditText.Grey" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_medium"
+                    android:layout_marginTop="@dimen/spacing_large"
+                    android:gravity="center|end"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/login_remember_switch"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                        android:textColor="@color/colorSecondaryText" />
+
+                    <Switch
+                        android:id="@+id/login_switch_remember"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="true"/>
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/login_btn_signup"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginLeft="-4dp"
+                    android:layout_marginRight="-4dp"
+                    android:background="@drawable/btn_rounded_primary"
+                    android:text="@string/login_signup_btn"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/spacing_large" />
+
+    </LinearLayout>
+
+</RelativeLayout>

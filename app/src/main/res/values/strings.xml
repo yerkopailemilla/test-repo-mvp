@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">VendorPro Mobile</string>
+
+    <string name="login_title_text">¡Aprovecha al máximo tus oportunidades con Vendor Mobile!</string>
+    <string name="login_company_hint">Nombre de empresa</string>
+    <string name="login_username_hint">Nombre de usuario</string>
+    <string name="login_password_hint">Contraseña</string>
+    <string name="login_remember_switch">Recordar</string>
+    <string name="login_signup_btn">INGRESAR</string>
+
+    <string name="navigation_drawer_open">Abrir menú de navegación</string>
+    <string name="navigation_drawer_close">Cerrar menú de navegación</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
