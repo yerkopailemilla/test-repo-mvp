@@ -1,12 +1,15 @@
 package cl.retailpro.vendorpromobile.ws;
 
 
-import cl.retailpro.vendorpromobile.entity.LoginResponseEntity;
 import io.reactivex.Observable;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 
 public interface LoginService {
 
     @GET("auth/token")
-    Observable<LoginResponseEntity> getLoginResponse(String company, String basicToken);
+    Observable<retrofit2.Response<ResponseBody>> getLoginResponse(@Header("Authorization") String token);
 }

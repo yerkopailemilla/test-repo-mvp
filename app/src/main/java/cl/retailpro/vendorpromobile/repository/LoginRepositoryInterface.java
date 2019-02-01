@@ -8,5 +8,5 @@ public interface LoginRepositoryInterface {
 
     void saveUserSession(UserSessionEntity userSessionEntity);
 
-    Observable<LoginResponseEntity> getLoginResult();
+    Observable<LoginResponseEntity> getLoginResult(String company, String token);
 }

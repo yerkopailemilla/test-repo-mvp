@@ -4,8 +4,12 @@ import android.support.annotation.Nullable;
 
 import javax.inject.Inject;
 
+import cl.retailpro.vendorpromobile.entity.LoginResponseEntity;
 import cl.retailpro.vendorpromobile.mvp.LoginActivityMVP;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 public class LoginActivityPresenter implements LoginActivityMVP.Presenter {
 
@@ -27,18 +31,23 @@ public class LoginActivityPresenter implements LoginActivityMVP.Presenter {
 
     @Override
     public void signUpButtonClicked() {
-        if (view != null){
-            if (view.getCompanyName().trim().isEmpty()){
+        if (view != null) {
+            if (view.getCompanyName().trim().isEmpty()) {
                 view.showInputCompanyError("Debes ingresar el nombre de tu empresa");
             } else {
-                if (view.getUsername().trim().isEmpty()){
+                if (view.getUsername().trim().isEmpty()) {
                     view.showInputUsernameError("Debes ingresar el nombre de usuario");
                 } else {
-                    if (view.getPassword().trim().isEmpty()){
+                    if (view.getPassword().trim().isEmpty()) {
                         view.showInputPasswordError("Debes ingresar tu contraseña");
                     } else {
-                        model.createToken(view.getCompanyName().trim(), view.getUsername().trim(), view.getPassword().trim());
-                        view.signUpSuccess();
+                        Disposable disposable = model.createToken(view.getCompanyName().trim(), view.getUsername().trim(), view.getPassword().trim())
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(loginResponseEntity -> view.signUpSuccess(),throwable -> {
+                                    //any response status code >= 400
+                                });
+
                     }
                 }
             }

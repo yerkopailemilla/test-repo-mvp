@@ -33,8 +33,8 @@ public interface LoginActivityMVP {
 
     interface Model {
 
-        void createToken(String companyName, String username, String password);
-        Observable<LoginResponseEntity> resultLogin();
+        Observable<LoginResponseEntity> createToken(String companyName, String username, String password);
+
 
     }
 }

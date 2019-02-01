@@ -96,15 +96,10 @@ public class LoginActivity extends DaggerAppCompatActivity implements LoginActiv
 
     @Override
     public void signUpSuccess() {
+        Toasty.success(this, "Ingresando correctamente", Toast.LENGTH_SHORT, true).show();
         Intent toMain = new Intent(this, MainActivity.class);
         toMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(toMain);
-        Toasty.success(this, "Ingresando correctamente", Toast.LENGTH_SHORT, true).show();
-
-        byte[] authPetri = ("sori.antola@petrizzio.cl:santola915").getBytes(); //c29yaS5hbnRvbGFAcGV0cml6emlvLmNsOnNhbnRvbGE5MTU=
-        byte[] authGeneral = ("rpro_1:64F9k2Wr").getBytes(); // cnByb18xOjY0RjlrMldy
-        String webServiceToken = Base64.encodeToString(authGeneral, Base64.NO_WRAP);
-        Log.d("TOKEN_BASIC", webServiceToken);
     }
 
 }

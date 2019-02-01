@@ -1,8 +1,13 @@
 package cl.retailpro.vendorpromobile.di;
 
+import android.util.Log;
+
 import java.io.IOException;
 
+import javax.inject.Singleton;
+
 import cl.retailpro.vendorpromobile.ws.LoginService;
+import cl.retailpro.vendorpromobile.ws.Session;
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.Interceptor;
@@ -17,41 +22,40 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 public class RetrofitModule {
 
-    private final String BASE_URL = "http://xxxxxxx.vendorpro.cl/MotorDeTareas/";
-    private final String WS_BASIC_TOKEN = "xxxxxxxxxxx";
+    public static final String BASE_URL = "http://$s.vendorpro.cl/MotorDeTareas/";
 
     @Provides
-    public OkHttpClient provideOkHttpClient(){
+    public OkHttpClient provideOkHttpClient(Session session){
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         return new OkHttpClient.Builder()
                 .addInterceptor(interceptor)
-                .addInterceptor(new Interceptor() {
-                    @Override
-                    public Response intercept(Chain chain) throws IOException{
-                        Request original = chain.request();
+                .addInterceptor(chain -> {
+                    Log.i("URL", "on interceptor");
+                    Request original = chain.request();
 
-                        Request request = original.newBuilder()
-                                .header("Authorization", "Basic " + WS_BASIC_TOKEN)
-                                .build();
-                        return chain.proceed(request);
+                    Request.Builder builder = original.newBuilder();
+                    String url = String.format(original.url().toString().replace("$","%"), session.getCompany());
+                    builder.url(url);
+                    Log.i("URL", url);
+
+                    if(session.getToken() != null && !session.getToken().isEmpty()) {
+                        builder.header("Authorization", session.getToken());
                     }
+
+                    Request request = builder.build();
+                    return chain.proceed(request);
                 })
                 .build();
     }
 
-    @Provides
-    public Retrofit provideRetrofit(String baseUrl, OkHttpClient client){
-        return new Retrofit.Builder()
-                .baseUrl(baseUrl)
-                .client(client)
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-    }
 
     @Provides
-    public LoginService provideLoginService(){
-        return provideRetrofit(BASE_URL, provideOkHttpClient()).create(LoginService.class);
+    public Retrofit.Builder provideRetrofit(OkHttpClient client){
+        return new Retrofit.Builder()
+                .client(client)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create());
     }
+
 }

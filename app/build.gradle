@@ -16,6 +16,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 ext {
@@ -27,7 +31,8 @@ ext {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
     //  Android libraries  -----------------------------------------------------------
     implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
     implementation "com.android.support:recyclerview-v7:$supportLibraryVersion"
@@ -55,12 +60,11 @@ dependencies {
     implementation "com.google.dagger:dagger:$daggerVersion"
     implementation "com.google.dagger:dagger-android:$daggerVersion"
     implementation "com.google.dagger:dagger-android-support:$daggerVersion"
-
     annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
     annotationProcessor "com.google.dagger:dagger-android-processor:$daggerVersion"
 
     //  Programación reactiva con RxJava  ----------------------------------------------------------
-    implementation "io.reactivex.rxjava2:rxjava:2.x.y"
+    implementation 'io.reactivex.rxjava2:rxjava:2.x.y'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
 
@@ -70,5 +74,4 @@ dependencies {
 
     //  Third dependencies libraries  --------------------------------------------------------------
     implementation 'com.github.GrenderG:Toasty:1.4.0'
-
 }
